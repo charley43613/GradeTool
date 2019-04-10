@@ -27,5 +27,23 @@ public class Validation {
         }
         return true;
     }
+    public static boolean checkPtValues(Integer erndPts, Integer ttlPts){
+
+        if (erndPts > ttlPts){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    public static boolean isInteger(String userInput){
+        try{
+            Integer int_Pts = Integer.parseInt(userInput);
+        }
+        catch(Exception e){
+            return false;
+        }
+        return true;
+    }
 
 }

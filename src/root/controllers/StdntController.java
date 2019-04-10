@@ -33,6 +33,17 @@ public class StdntController {
     }
     public String getStudentName(int index){
         return _students.get(index).getStudentName();
+    } //retrieves student name at a particular index
+    public Student findStudent(String studentName){
+        Student theStudent = null;
+        for(Student student:_students){
+            if(student.getStudentName().equals(studentName)){
+                theStudent = student;
+                return theStudent;
+            }
+
+        }
+        return theStudent;
     }
 
 }

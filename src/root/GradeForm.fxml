@@ -47,7 +47,7 @@
                   <Font name="Times New Roman" size="10.0" />
                </font>
             </Label>
-            <TextField fx:id="tfName" />
+            <TextField fx:id="tfErndPts" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -55,12 +55,12 @@
       </HBox>
       <HBox fx:id="nameRow1" layoutX="21.0" layoutY="218.0" prefHeight="35.0" prefWidth="166.0">
          <children>
-            <Label fx:id="lname1" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="112.0" text="Total Pts:">
+            <Label fx:id="lname1" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="112.0" text="Total Points:">
                <font>
                   <Font name="Times New Roman" size="10.0" />
                </font>
             </Label>
-            <TextField fx:id="tfName1" />
+            <TextField fx:id="tfTtlPts" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
