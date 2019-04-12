@@ -13,16 +13,24 @@ import root.student.Student;
 import root.student.TestGrade;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
 public class GradeFormCtrler implements Initializable {
 
-    private static final String DFLT_STDNT = "Select Student"; //initial choicebox items
-    private static final String DFLT_ADD_EDT = "Edit/Add Grade";
-    private static final String EDIT_GRADE = "Edit Grade";
-    private static final String ADD_HWGRADE = "Add Homework Grade";
-    private static final String ADD_TESTGRADE = "Add Test Grade";
+    enum e_GradeType
+    {
+        HW_GRADE,
+        TEST_GRADE
+    }
+    private final String DFLT_STDNT = "Select Student"; //initial choicebox items
+    private final String DFLT_ADD_EDT = "Edit/Add Grade";
+    private final String EDIT_GRADE = "Edit Grade";
+    private final String ADD_HWGRADE = "Add Homework Grade";
+    private final String ADD_TESTGRADE = "Add Test Grade";
+    private final String DFLT_GRDS = "Select Grade";
 
 
     StdntController studentController = StdntController.getStdntController();
@@ -30,6 +38,8 @@ public class GradeFormCtrler implements Initializable {
     ChoiceBox chcbxStdntSlct;
     @FXML
     ChoiceBox chcbxAddEdtGrd;
+    @FXML
+    ChoiceBox chcbxStdntGrds;
     @FXML
     Button btnAddStdnt;
     @FXML
@@ -54,6 +64,9 @@ public class GradeFormCtrler implements Initializable {
         chcbxAddEdtGrd.getItems().add(ADD_HWGRADE);
         chcbxAddEdtGrd.getItems().add(ADD_TESTGRADE);
         chcbxAddEdtGrd.setValue(DFLT_ADD_EDT);//default value of choicebox
+
+
+
     }
 
     @FXML
@@ -81,6 +94,11 @@ public class GradeFormCtrler implements Initializable {
 
     }
     @FXML
+    private void stdntSlcted(){
+        System.out.println("Student selection box changed");
+
+    }
+    @FXML
     private void addEditGrdClckd(){
         Object dfltOptnStdntSlct = chcbxStdntSlct.getItems().get(0);
         Object dfltOptnAddEdtGrd = chcbxAddEdtGrd.getItems().get(0);
@@ -93,16 +111,22 @@ public class GradeFormCtrler implements Initializable {
             if(crntOptnStdntSlct == dfltOptnStdntSlct){
                 chcbxStdntSlct.getStyleClass().add("invalid-field");
             }
+            else{
+                chcbxStdntSlct.getStyleClass().remove("invalid-field");
+            }
             if(crntOptnAddEdtGrd == dfltOptnAddEdtGrd){
                 chcbxAddEdtGrd.getStyleClass().add("invalid-field");
+            }
+            else{
+                chcbxAddEdtGrd.getStyleClass().remove("invalid-field");
             }
 
         }
 
-        else if(crntOptnAddEdtGrd.equals(ADD_HWGRADE)|| crntOptnAddEdtGrd.equals(ADD_TESTGRADE)){//adding grade
+        else if(crntOptnAddEdtGrd.equals(ADD_HWGRADE)|| crntOptnAddEdtGrd.equals(ADD_TESTGRADE) ||crntOptnAddEdtGrd.equals(EDIT_GRADE)){//adding grade
             Student theStudent= null; //get the student selected
             try{
-                theStudent = studentController.findStudent(crntOptnStdntSlct.getClass().toString());
+                theStudent = studentController.findStudent(crntOptnStdntSlct.toString());
                 System.out.println("Student found");
             }
             catch(Exception e){
@@ -110,14 +134,36 @@ public class GradeFormCtrler implements Initializable {
                 System.out.println("Memory integrity error, selection exists where student does not");
             }
 
+            if(crntOptnAddEdtGrd.equals(EDIT_GRADE)){//generation of grades have taken place, now validate the choice box/integer grade inputs
+                List<String> stdntGrds = generateStndtGrades(theStudent);
+                chcbxStdntGrds.setDisable(false);//activate choicebox for selection
+                chcbxStdntGrds.getItems().removeAll(chcbxStdntGrds.getItems());
+                for (String grade: stdntGrds){
+                    chcbxStdntGrds.getItems().add(DFLT_GRDS);
+                    chcbxAddEdtGrd.getItems().add(EDIT_GRADE);
+                    chcbxAddEdtGrd.getItems().add(ADD_HWGRADE);
+                    chcbxAddEdtGrd.getItems().add(ADD_TESTGRADE);
+                    chcbxAddEdtGrd.setValue(DFLT_GRDS);//default value of choicebox
+
+                }
+
+
+            }
+
             //User supplied point value validation
-            if(!(Validation.isInteger(tfErndPts.getText()) || !(Validation.isInteger(tfTtlPts.getText())))){//are they integers
+            if(!(Validation.isInteger(tfErndPts.getText())) || !(Validation.isInteger(tfTtlPts.getText()))){//are they integers
                 generateError("Please supply integer values at highlighted fields");
                 if(!(Validation.isInteger((tfErndPts.getText())))){
                     tfErndPts.getStyleClass().add("invalid-field");
                 }
+                else{
+                    tfErndPts.getStyleClass().remove("invalid-field");
+                }
                 if(!(Validation.isInteger((tfTtlPts.getText())))){
                     tfTtlPts.getStyleClass().add("invalid-field");
+                }
+                else{
+                    tfTtlPts.getStyleClass().remove("invalid-field");
                 }
 
             }
@@ -126,22 +172,27 @@ public class GradeFormCtrler implements Initializable {
                 tfErndPts.getStyleClass().add("invalid-field");
                 tfTtlPts.getStyleClass().add("invalid-field");
             }
-            else{//validation completed for point values
-                if (crntOptnAddEdtGrd.equals(ADD_HWGRADE)){//add hw grade
-                    String hwname = "HW" + theStudent.getHwGrades().size();//prepare hw name
-                    theStudent.addGrade(new HwGrade(hwname, Integer.parseInt(tfErndPts.getText()), Integer.parseInt(tfTtlPts.getText())));
+            else{//validation completed for point values, add/edit grade to Student depending on type
+                String outputMsg = "";
+                if (crntOptnAddEdtGrd.equals(ADD_HWGRADE)){
+                    e_GradeType gradeType = e_GradeType.HW_GRADE;
+                    outputMsg = addGrade(gradeType, theStudent);
+                }
+                else{
+                    e_GradeType gradeType = e_GradeType.TEST_GRADE;
+                    outputMsg = addGrade(gradeType, theStudent);
+
 
                 }
-                else{                                      //add test grade
-                    String testname = "TEST" + theStudent.getTestGrades().size();//prepare hw name
-                    theStudent.addGrade(new TestGrade(testname, Integer.parseInt(tfErndPts.getText()), Integer.parseInt(tfTtlPts.getText())));
-                }
 
+                formCompletion(outputMsg);
             }
+
+
 
 
             //TODO clear all potential lingering error indicators on form
-            }
+        }
 
 
 
@@ -171,9 +222,56 @@ public class GradeFormCtrler implements Initializable {
         }
         */
 
+    private String addGrade(e_GradeType gradeType, Student theStudent){
+        String outputMsg = "";
+        if(gradeType == e_GradeType.HW_GRADE){
+            Integer hwcount = 1;
+            try{
+                hwcount += theStudent.getHwGrades().size();//TODO not capturing increased size
+            }
+            catch(Exception e){
+
+            }
+            String hwname = "HW" + hwcount;//prepare hw name
+            theStudent.addGrade(new HwGrade(hwname, Integer.parseInt(tfErndPts.getText()), Integer.parseInt(tfTtlPts.getText())));
+            outputMsg = hwname +" added for student: "+ theStudent.getStudentName();
+
+        }
+        else if(gradeType == e_GradeType.TEST_GRADE){
+            Integer testcount = 1;
+            try{
+                testcount += theStudent.getTestGrades().size();//TODO not capturing increased size
+            }
+            catch(Exception e){
+
+            }
+            String testName = "Test" + testcount;//prepare test name
+            theStudent.addGrade(new TestGrade(testName, Integer.parseInt(tfErndPts.getText()), Integer.parseInt(tfTtlPts.getText())));
+            outputMsg = testName +" added for student: "+ theStudent.getStudentName();
+
+        }
+        else{
+            outputMsg = "An Error has occured";
+        }
+
+
+        return outputMsg;
+
+    }
 
 
 
+    private void formCompletion(String outputMsg){
+        tfErndPts.getStyleClass().remove("invalid-field");//information confirmed, infrom the user and remove potential invalid indicator styles on gui elements
+        tfTtlPts.getStyleClass().remove("invalid-field");
+        chcbxAddEdtGrd.getStyleClass().remove("invalid-field");
+        chcbxStdntSlct.getStyleClass().remove("invalid-field");
+        tfErndPts.clear();
+        tfTtlPts.clear();
+        System.out.println((outputMsg));
+
+
+    }
     private void generateError(String contentText){//sets context of error for user clarification
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Selection/Input Error");
@@ -186,5 +284,20 @@ public class GradeFormCtrler implements Initializable {
         alert.setContentText("Please check choices/inputs at highlighted fields");
         alert.showAndWait();
     }
+    private List<String> generateStndtGrades(Student theStudent){//returns the names of all the Students grades to populate the choicebox
+        List<String> stdntGrds = new ArrayList<>();
+        try{
+            for(HwGrade hwGrade : theStudent.getHwGrades())
+                stdntGrds.add(hwGrade.getName());
+            for(TestGrade testGrade: theStudent.getTestGrades()){
+                stdntGrds.add(testGrade.getName());
+            }
+        }
+        catch(NullPointerException e){
+            System.out.println("No grades exist");
+        }
+        return stdntGrds;
+    }
+
 
 }

@@ -37,13 +37,16 @@ public class Validation {
         }
     }
     public static boolean isInteger(String userInput){
+        boolean isInteger = false;
         try{
             Integer int_Pts = Integer.parseInt(userInput);
+            isInteger = true;
+            return isInteger;
         }
         catch(Exception e){
-            return false;
+            return isInteger;
         }
-        return true;
+
     }
 
 }

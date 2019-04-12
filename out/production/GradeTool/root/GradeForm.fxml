@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="305.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.GradeFormCtrler">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="305.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.GradeFormCtrler">
    <children>
       <MenuBar minHeight="-Infinity" prefHeight="25.0">
         <menus>
@@ -30,47 +30,47 @@
             <Insets right="271.0" />
          </padding>
       </MenuBar>
-      <ScrollPane fx:id="scrollPane" layoutX="10.0" layoutY="279.0" maxHeight="200.0" maxWidth="600.0" minHeight="0.0" minWidth="0.0" prefHeight="121.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="279.0">
+      <ScrollPane fx:id="scrollPane" layoutX="10.0" layoutY="311.0" maxHeight="200.0" maxWidth="600.0" minHeight="0.0" minWidth="0.0" prefHeight="101.0" prefWidth="305.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="311.0">
          <content>
             <TextArea disable="true" maxHeight="120.0" prefHeight="119.0" prefWidth="308.0" />
          </content>
       </ScrollPane>
-      <Text layoutX="14.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Output:">
+      <Text layoutX="15.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Output:">
          <font>
             <Font size="10.0" />
          </font>
       </Text>
-      <HBox fx:id="nameRow" layoutX="21.0" layoutY="188.0" prefHeight="35.0" prefWidth="166.0">
+      <HBox fx:id="nameRow" layoutX="21.0" layoutY="221.0" prefHeight="35.0" prefWidth="166.0">
          <children>
             <Label fx:id="lname" prefHeight="25.0" prefWidth="112.0" text="Earned Points:">
                <font>
                   <Font name="Times New Roman" size="10.0" />
                </font>
             </Label>
-            <TextField fx:id="tfName" />
+            <TextField fx:id="tfErndPts" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <HBox fx:id="nameRow1" layoutX="21.0" layoutY="218.0" prefHeight="35.0" prefWidth="166.0">
+      <HBox fx:id="nameRow1" layoutX="21.0" layoutY="256.0" prefHeight="35.0" prefWidth="166.0">
          <children>
-            <Label fx:id="lname1" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="112.0" text="Total Pts:">
+            <Label fx:id="lname1" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="112.0" text="Total Points:">
                <font>
                   <Font name="Times New Roman" size="10.0" />
                </font>
             </Label>
-            <TextField fx:id="tfName1" />
+            <TextField fx:id="tfTtlPts" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <ChoiceBox fx:id="chcbxAddEdtGrd" layoutX="38.0" layoutY="163.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="chcbxStdntSlct" accessibleText="Select a Student" layoutX="38.0" layoutY="130.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="chcbxAddEdtGrd" layoutX="38.0" layoutY="161.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="chcbxStdntSlct" accessibleText="Select a Student" onAction="#stdntSlcted" layoutX="38.0" layoutY="121.0" prefWidth="150.0" />
       <TextField fx:id="tfEntrStdntNm" layoutX="32.0" layoutY="54.0" promptText="Enter New Student" />
       <Button fx:id="btnAddStdnt" layoutX="208.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#addStdntClckd" text="Add Student" />
-      <Button fx:id="btnAddEdtGrd" layoutX="230.0" layoutY="176.0" mnemonicParsing="false" onAction="#addEditGrdClckd" text="Submit" />
+      <Button fx:id="btnAddEdtGrd" layoutX="230.0" layoutY="186.0" mnemonicParsing="false" onAction="#addEditGrdClckd" text="Submit" />
       <Line endX="190.0" layoutX="107.0" layoutY="97.0" startX="-100.0" stroke="#dddada" />
       <Text layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add/Change Grade">
          <font>
@@ -82,5 +82,6 @@
             <Font size="10.0" />
          </font>
       </Text>
+      <ChoiceBox fx:id="chcbxStdntGrds" disable="true" layoutX="38.0" layoutY="199.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

@@ -98,7 +98,7 @@
 	-fx-border-width: 2px;
 }
 
-.student-invalid-field{
+.invalid-field{
 	-fx-border-color: #F08080;
 	-fx-border-width: 2px;
 }
