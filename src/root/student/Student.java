@@ -46,11 +46,25 @@ public class Student {
     public void addGrade(HwGrade hwGrade){
         this._hwGrades.add(hwGrade);
     }
-    public void editGrade(TestGrade testGrade, int adjustedPts){
-        testGrade.setEarnedPts(adjustedPts);
+    public void editGrade(TestGrade testGrade, int earnedPts, int ttlPts){
+
+        for(TestGrade stdnTestGrd: _testGrades){
+            if (testGrade.equals(stdnTestGrd)){
+                testGrade.setEarnedPts(earnedPts);
+                testGrade.setTotalPts(ttlPts);
+                System.out.println("Test grade updated");
+            }
+        }
+
     }
-    public void editGrade(HwGrade hwGrade, int adjustedPts){
-        hwGrade.setEarnedPts(adjustedPts);
+    public void editGrade(HwGrade hwGrade, int earnedPts, int ttlPts){
+        for(HwGrade stdnHwGrd: _hwGrades){
+            if (hwGrade.equals(stdnHwGrd)){
+                hwGrade.setEarnedPts(earnedPts);
+                hwGrade.setTotalPts(ttlPts);
+                System.out.println("HW grade updated");
+            }
+        }
     }
     public List<HwGrade> getHwGrades(){
         return this._hwGrades;
@@ -60,5 +74,23 @@ public class Student {
     }
     public String getStudentName(){
         return this._studentName;
+    }
+    public HwGrade findHWGrade(String gradeName){
+        HwGrade thehwGrade = null;
+        for(HwGrade hwGrade : _hwGrades){
+            if(gradeName.equals(hwGrade.getName())){
+                thehwGrade = hwGrade;
+            }
+        }
+        return thehwGrade;
+    }
+    public TestGrade findTestGrade(String testName){
+        TestGrade thetestGrade = null;
+        for(TestGrade testGrade : _testGrades){
+            if(testName.equals(testGrade.getName())){
+                thetestGrade = testGrade;
+            }
+        }
+        return thetestGrade;
     }
 }

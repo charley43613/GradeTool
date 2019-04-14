@@ -15,6 +15,9 @@ public abstract class Grade {
     public void setEarnedPts(int _earnedPts){
         this._earnedPts = _earnedPts;
     }
+    public void setTotalPts(int _totalPoints){
+        this._totalPoints = _totalPoints;
+    }
     public int getEarnedPts(){
         return this._earnedPts;
     }
