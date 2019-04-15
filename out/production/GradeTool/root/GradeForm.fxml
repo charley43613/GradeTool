@@ -16,13 +16,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="305.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.GradeFormCtrler">
+<AnchorPane id="mainWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="305.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="root.GradeFormCtrler">
    <children>
       <MenuBar minHeight="-Infinity" prefHeight="25.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#openConfigFile" text="Open" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveConfigFile" text="Save" />
+                  <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
         </menus>
@@ -66,8 +68,8 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <ChoiceBox fx:id="chcbxAddEdtGrd" layoutX="38.0" layoutY="161.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="chcbxStdntSlct" accessibleText="Select a Student" onAction="#stdntSlcted" layoutX="38.0" layoutY="121.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="chcbxAddEdtGrd" layoutX="38.0" layoutY="161.0" onAction="#chcbxEdtGrdClicked" prefWidth="150.0" />
+      <ChoiceBox fx:id="chcbxStdntSlct" accessibleText="Select a Student" layoutX="38.0" layoutY="121.0" onAction="#chcbxStdntClicked" prefWidth="150.0" />
       <TextField fx:id="tfEntrStdntNm" layoutX="32.0" layoutY="54.0" promptText="Enter New Student" />
       <Button fx:id="btnAddStdnt" layoutX="208.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#addStdntClckd" text="Add Student" />
       <Button fx:id="btnAddEdtGrd" layoutX="230.0" layoutY="186.0" mnemonicParsing="false" onAction="#addEditGrdClckd" text="Submit" />

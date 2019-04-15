@@ -1,6 +1,8 @@
 package root.student;
 
-public abstract class Grade {
+import java.io.Serializable;
+
+public abstract class Grade implements Serializable {
 
     String _name;
     int _earnedPts;

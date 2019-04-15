@@ -1,9 +1,10 @@
 package root.student;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student {
+public class Student implements Serializable {
     List<TestGrade> _testGrades = new ArrayList<TestGrade>();
     List<HwGrade> _hwGrades = new ArrayList<HwGrade>();
     private String _studentName;
@@ -72,6 +73,20 @@ public class Student {
     public List<TestGrade> getTestGrades(){
         return this._testGrades;
     }
+    public static List<String> generateStndtGrades(Student theStudent){//returns the names of all the Students grades to populate the choicebox
+        List<String> stdntGrds = new ArrayList<>();
+        try{
+            for(HwGrade hwGrade : theStudent.getHwGrades())
+                stdntGrds.add(hwGrade.getName());
+            for(TestGrade testGrade: theStudent.getTestGrades()){
+                stdntGrds.add(testGrade.getName());
+            }
+        }
+        catch(NullPointerException e){
+            System.out.println("No grades exist");
+        }
+        return stdntGrds;
+    }
     public String getStudentName(){
         return this._studentName;
     }
@@ -93,4 +108,7 @@ public class Student {
         }
         return thetestGrade;
     }
+
+
+
 }
