@@ -4,7 +4,7 @@ import root.controllers.StdntController;
 
 import java.io.*;
 
-public class GradeToolFileIO {
+public class GradeToolFileIO implements Serializable{
 
     private static GradeToolFileIO gradeToolFileIO = new GradeToolFileIO();
     private GradeToolFileIO(){}
@@ -30,13 +30,13 @@ public class GradeToolFileIO {
         }
     }
     public StdntController openFile(String pathname){
-        StdntController readinCtrler = null;
+        StdntController stdntController = StdntController.getStdntController();//gets the singleton object
         try {
             FileInputStream fi = new FileInputStream(new File(pathname));
             ObjectInputStream oi = new ObjectInputStream(fi);
 
             // Read objects
-            readinCtrler = (StdntController) oi.readObject();
+            stdntController = (StdntController) oi.readObject();
             oi.close();
             fi.close();
         }
@@ -48,7 +48,7 @@ public class GradeToolFileIO {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return readinCtrler;
+        return stdntController;
 
 }
 

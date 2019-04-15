@@ -18,6 +18,9 @@ public class StdntController implements Serializable {
     public static StdntController getStdntController(){
         return _stdntController;
     }
+    public void setStdntController(StdntController stdntController){
+        _stdntController = stdntController;
+    }
     public List<Student> getStudents(){
         return _students;
     }

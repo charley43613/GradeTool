@@ -7,8 +7,8 @@ public class HwGrade extends Grade implements Serializable {//used to differenti
     public HwGrade(String hwName, int earnedPts, int totalPts){
         super(hwName, earnedPts, totalPts);
     }
-    public double getWeight(){
-        return this.WEIGHT;
+    public static double getWeight(){
+        return WEIGHT;
     }
 
 }

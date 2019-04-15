@@ -18,6 +18,7 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/root/application.css").toExternalForm());
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.setTitle("Grade Tool");
             primaryStage.show();
         }

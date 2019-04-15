@@ -7,7 +7,6 @@ public class TestGrade extends Grade implements Serializable {//used to differen
     public TestGrade(String testName, int testGrade, int totalPts) {
         super(testName, testGrade, totalPts);
     }
-    public double getWeight(){
-        return this.WEIGHT;
+    public static double getWeight(){ return WEIGHT;
     }
 }

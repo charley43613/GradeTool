@@ -24,7 +24,6 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#openConfigFile" text="Open" />
                   <MenuItem mnemonicParsing="false" onAction="#saveConfigFile" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
         </menus>
@@ -34,7 +33,7 @@
       </MenuBar>
       <ScrollPane fx:id="scrollPane" layoutX="10.0" layoutY="311.0" maxHeight="200.0" maxWidth="600.0" minHeight="0.0" minWidth="0.0" prefHeight="101.0" prefWidth="305.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="311.0">
          <content>
-            <TextArea disable="true" maxHeight="120.0" prefHeight="119.0" prefWidth="308.0" />
+            <TextArea fx:id="taOutput" editable="false" maxHeight="120.0" prefHeight="119.0" prefWidth="308.0" />
          </content>
       </ScrollPane>
       <Text layoutX="15.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Output:">
@@ -42,7 +41,7 @@
             <Font size="10.0" />
          </font>
       </Text>
-      <HBox fx:id="nameRow" layoutX="21.0" layoutY="221.0" prefHeight="35.0" prefWidth="166.0">
+      <HBox fx:id="nameRow" layoutX="7.0" layoutY="221.0" prefHeight="35.0" prefWidth="166.0">
          <children>
             <Label fx:id="lname" prefHeight="25.0" prefWidth="112.0" text="Earned Points:">
                <font>
@@ -55,7 +54,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <HBox fx:id="nameRow1" layoutX="21.0" layoutY="256.0" prefHeight="35.0" prefWidth="166.0">
+      <HBox fx:id="nameRow1" layoutX="7.0" layoutY="256.0" prefHeight="35.0" prefWidth="166.0">
          <children>
             <Label fx:id="lname1" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="112.0" text="Total Points:">
                <font>
@@ -68,11 +67,11 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <ChoiceBox fx:id="chcbxAddEdtGrd" layoutX="38.0" layoutY="161.0" onAction="#chcbxEdtGrdClicked" prefWidth="150.0" />
-      <ChoiceBox fx:id="chcbxStdntSlct" accessibleText="Select a Student" layoutX="38.0" layoutY="121.0" onAction="#chcbxStdntClicked" prefWidth="150.0" />
+      <ChoiceBox fx:id="chcbxAddEdtGrd" layoutX="24.0" layoutY="161.0" onAction="#chcbxEdtGrdClicked" prefWidth="150.0" />
+      <ChoiceBox fx:id="chcbxStdntSlct" accessibleText="Select a Student" layoutX="24.0" layoutY="121.0" onAction="#chcbxStdntClicked" prefWidth="150.0" />
       <TextField fx:id="tfEntrStdntNm" layoutX="32.0" layoutY="54.0" promptText="Enter New Student" />
-      <Button fx:id="btnAddStdnt" layoutX="208.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#addStdntClckd" text="Add Student" />
-      <Button fx:id="btnAddEdtGrd" layoutX="230.0" layoutY="186.0" mnemonicParsing="false" onAction="#addEditGrdClckd" text="Submit" />
+      <Button fx:id="btnAddStdnt" layoutX="191.0" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#addStdntClckd" text="Add Student" />
+      <Button fx:id="btnAddEdtGrd" layoutX="190.0" layoutY="244.0" mnemonicParsing="false" onAction="#addEditGrdClckd" text="Submit Form" />
       <Line endX="190.0" layoutX="107.0" layoutY="97.0" startX="-100.0" stroke="#dddada" />
       <Text layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add/Change Grade">
          <font>
@@ -84,6 +83,8 @@
             <Font size="10.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="chcbxStdntGrds" disable="true" layoutX="38.0" layoutY="199.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="chcbxStdntGrds" disable="true" layoutX="24.0" layoutY="199.0" prefWidth="150.0" />
+      <Button fx:id="btnClcLtrGrd" layoutX="178.0" layoutY="146.0" mnemonicParsing="false" onAction="#clcLtrGrdClckd" prefHeight="25.0" prefWidth="109.0" text="Calc Letter Grade" />
+      <Button fx:id="btnClcPrctgGrd" layoutX="189.0" layoutY="109.0" mnemonicParsing="false" onAction="#clcPctGrdClckd" text="Calc % Grade" />
    </children>
 </AnchorPane>

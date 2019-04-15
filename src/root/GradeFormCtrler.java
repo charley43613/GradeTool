@@ -51,13 +51,19 @@ public class GradeFormCtrler implements Initializable {
     @FXML
     Button btnAddStdnt;
     @FXML
+    Button btnClcLtrGrd;
+    @FXML
+    Button btnClcPrctgGrd;
+    @FXML
     TextField tfEntrStdntNm;
     @FXML
     TextField tfErndPts;
     @FXML
     TextField tfTtlPts;
     @FXML
-    AnchorPane mainWindow;
+    TextArea taOutput;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {//generates choiceboxes and sets default values
@@ -88,6 +94,8 @@ public class GradeFormCtrler implements Initializable {
             tfEntrStdntNm.clear();
 
         }
+
+
         else{
             tfEntrStdntNm.getStyleClass().add("invalid-field");
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -100,13 +108,64 @@ public class GradeFormCtrler implements Initializable {
 
     }
     @FXML
+    private void clcPctGrdClckd(){//TODO FIX ME
+        Object dfltOptnStdntSlct = chcbxStdntSlct.getItems().get(0);
+        Object crntOptnStdntSlct = chcbxStdntSlct.getValue();
+
+
+        if(!(crntOptnStdntSlct == dfltOptnStdntSlct)){
+
+
+            Student theStudent = studentController.getStudent(crntOptnStdntSlct);
+            double hwGradeEarned = 0;
+            double hwGradeTotal = 0;
+            for(HwGrade hwgrade: theStudent.getHwGrades()){
+                hwGradeEarned += hwgrade.getEarnedPts();
+                hwGradeTotal += hwgrade.getTotalPoints();
+
+            }
+
+            double testGradeEarned = 0;
+            double testGradeTotal = 0;
+            for(TestGrade testGrade: theStudent.getTestGrades()){
+                testGradeEarned += testGrade.getEarnedPts();
+                testGradeTotal += testGrade.getTotalPoints();
+            }
+            double hwWeightedAvg = (hwGradeEarned/hwGradeTotal)*HwGrade.getWeight();
+            double testWeightedAvg = (testGradeEarned/testGradeTotal)*TestGrade.getWeight();
+            formCompletion("Hw weighted: " + hwWeightedAvg + "Test Weighted: " + testWeightedAvg);
+
+
+        }
+        else{
+            chcbxStdntSlct.getStyleClass().add("invalid-field");
+            generateError("Select a student");
+        }
+
+
+    }
+    @FXML
+    private void clcLtrGrdClckd(){
+
+    }
+    @FXML
     private void chcbxStdntClicked(){//if student selected, checks if edit grade selected
-        gradeGenerator();
+        try {
+            gradeGenerator();
+        }
+        catch(IndexOutOfBoundsException e){
+            System.out.println("File loaded potentially causing trigger");
+        }
     }
 
     @FXML
     private void chcbxEdtGrdClicked(){//if edit grade selected, checks if student is selected
-        gradeGenerator();
+        try {
+            gradeGenerator();
+        }
+        catch(IndexOutOfBoundsException e){
+            System.out.println("File loaded potentially causing trigger");
+        }
     }
 
 
@@ -285,6 +344,7 @@ public class GradeFormCtrler implements Initializable {
         chcbxStdntSlct.setValue(DFLT_STDNT);
         tfErndPts.clear();
         tfTtlPts.clear();
+        taOutput.appendText(outputMsg + "\n");
         System.out.println((outputMsg));
 
 
