@@ -20,6 +20,7 @@ import root.student.TestGrade;
 
 import java.io.File;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,6 +32,10 @@ public class GradeFormCtrler implements Initializable {
     {
         HW_GRADE,
         TEST_GRADE
+    }
+    enum e_GradeFormat{
+        LTR_GRADE,
+        PCT_GRADE
     }
     private final String DFLT_STDNT = "Select Student"; //initial choicebox items
     private final String DFLT_ADD_EDT = "Edit/Add Grade";
@@ -109,33 +114,14 @@ public class GradeFormCtrler implements Initializable {
     }
     @FXML
     private void clcPctGrdClckd(){//TODO FIX ME
+
         Object dfltOptnStdntSlct = chcbxStdntSlct.getItems().get(0);
         Object crntOptnStdntSlct = chcbxStdntSlct.getValue();
 
 
         if(!(crntOptnStdntSlct == dfltOptnStdntSlct)){
-
-
             Student theStudent = studentController.getStudent(crntOptnStdntSlct);
-            double hwGradeEarned = 0;
-            double hwGradeTotal = 0;
-            for(HwGrade hwgrade: theStudent.getHwGrades()){
-                hwGradeEarned += hwgrade.getEarnedPts();
-                hwGradeTotal += hwgrade.getTotalPoints();
-
-            }
-
-            double testGradeEarned = 0;
-            double testGradeTotal = 0;
-            for(TestGrade testGrade: theStudent.getTestGrades()){
-                testGradeEarned += testGrade.getEarnedPts();
-                testGradeTotal += testGrade.getTotalPoints();
-            }
-            double hwWeightedAvg = (hwGradeEarned/hwGradeTotal)*HwGrade.getWeight();
-            double testWeightedAvg = (testGradeEarned/testGradeTotal)*TestGrade.getWeight();
-            formCompletion("Hw weighted: " + hwWeightedAvg + "Test Weighted: " + testWeightedAvg);
-
-
+            formCompletion(computeGrade(theStudent, e_GradeFormat.PCT_GRADE));
         }
         else{
             chcbxStdntSlct.getStyleClass().add("invalid-field");
@@ -146,6 +132,18 @@ public class GradeFormCtrler implements Initializable {
     }
     @FXML
     private void clcLtrGrdClckd(){
+        Object dfltOptnStdntSlct = chcbxStdntSlct.getItems().get(0);
+        Object crntOptnStdntSlct = chcbxStdntSlct.getValue();
+
+
+        if(!(crntOptnStdntSlct == dfltOptnStdntSlct)){
+            Student theStudent = studentController.getStudent(crntOptnStdntSlct);
+            formCompletion(computeGrade(theStudent, e_GradeFormat.LTR_GRADE));
+        }
+        else{
+            chcbxStdntSlct.getStyleClass().add("invalid-field");
+            generateError("Select a student");
+        }
 
     }
     @FXML
@@ -292,6 +290,109 @@ public class GradeFormCtrler implements Initializable {
 
 
     }
+
+    private String computeGrade(Student theStudent, e_GradeFormat type){//returns string to be used in output
+        String output = "";
+        double hwGradeEarned = 0;
+        double hwGradeTotal = 0;
+        for(HwGrade hwgrade: theStudent.getHwGrades()){
+            hwGradeEarned += hwgrade.getEarnedPts();
+            hwGradeTotal += hwgrade.getTotalPoints();
+
+        }
+
+        double testGradeEarned = 0;
+        double testGradeTotal = 0;
+        for(TestGrade testGrade: theStudent.getTestGrades()){
+            testGradeEarned += testGrade.getEarnedPts();
+            testGradeTotal += testGrade.getTotalPoints();
+        }
+        double hwWeightedAvg = (hwGradeEarned/hwGradeTotal)*HwGrade.getWeight();
+        double testWeightedAvg = (testGradeEarned/testGradeTotal)*TestGrade.getWeight();
+        switch (type) {
+
+            case PCT_GRADE: {
+
+                DecimalFormat df = new DecimalFormat("##.##%");//provide formatting for clarity
+
+                //don't provide a grade if none exist
+                if (theStudent.getHwGrades().size() == 0 && theStudent.getTestGrades().size() == 0) {
+                    output += "No grades exist for the selected student";
+                    return output;
+                }
+                //don't provide weight if there are only test grades or only homework grades
+                else if (theStudent.getTestGrades().size() == 0) {
+                    output += theStudent.getStudentName() + ":  percentage grade = " + df.format(hwWeightedAvg / HwGrade.getWeight());
+                }
+                else if (theStudent.getHwGrades().size() == 0) {
+                    output += theStudent.getStudentName() + ": percentage grade = " + df.format(testWeightedAvg / TestGrade.getWeight());
+                }
+
+                //provide the weighted average
+                else {
+                    String formattedWeightedGrd = df.format(hwWeightedAvg + testWeightedAvg);
+                    output += theStudent.getStudentName() + ": percentage grade = " + formattedWeightedGrd;
+
+                }
+                break;
+            }
+
+            case LTR_GRADE: {
+                //calculate the letter grade
+                double decimalGrade = 0.0;
+                //don't provide a grade if none exist
+                if (theStudent.getHwGrades().size() == 0 && theStudent.getTestGrades().size() == 0) {
+                    output += "No grades exist for the selected student";
+                    return output;
+                }
+                else if (theStudent.getTestGrades().size() == 0) {
+                    decimalGrade = hwWeightedAvg / HwGrade.getWeight();
+                }
+                else if (theStudent.getHwGrades().size() == 0) {
+                    decimalGrade = testWeightedAvg / TestGrade.getWeight();
+                }
+                //provide the weighted average
+                else {
+                    decimalGrade = hwWeightedAvg + testWeightedAvg;
+
+                }
+                //find the letter grade equivalent to the decimal
+                String ltrGrd = "";
+                if (decimalGrade < .65) {
+                    ltrGrd = "F";
+
+                } else if (decimalGrade <= .66) {
+                    ltrGrd = "D";
+                } else if (decimalGrade <= .69) {
+                    ltrGrd = "D+";
+                } else if (decimalGrade <= .72) {
+                    ltrGrd = "C-";
+                } else if (decimalGrade <= .76) {
+                    ltrGrd = "C";
+                } else if (decimalGrade <= .79) {
+                    ltrGrd = "C+";
+                } else if (decimalGrade <= .82) {
+                    ltrGrd = "B-";
+                } else if (decimalGrade <= .86) {
+                    ltrGrd = "B";
+                } else if (decimalGrade <= .89) {
+                    ltrGrd = "B+";
+                } else if (decimalGrade <= .92) {
+                    ltrGrd = "A-";
+                } else if (decimalGrade <= .96) {
+                    ltrGrd = "A";
+                } else if (decimalGrade <= 1.0) {
+                    ltrGrd = "A+";
+                }
+                output += theStudent.getStudentName() + ": Letter Grade = " + ltrGrd;
+                break;
+
+            }
+        }
+        return output;
+
+    }
+
 
 
 
