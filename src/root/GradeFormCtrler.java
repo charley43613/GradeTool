@@ -20,6 +20,9 @@ import root.student.TestGrade;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +70,8 @@ public class GradeFormCtrler implements Initializable {
     TextField tfTtlPts;
     @FXML
     TextArea taOutput;
+    @FXML
+    Button btnDltGrd;
 
 
 
@@ -130,6 +135,7 @@ public class GradeFormCtrler implements Initializable {
 
 
     }
+
     @FXML
     private void clcLtrGrdClckd(){
         Object dfltOptnStdntSlct = chcbxStdntSlct.getItems().get(0);
@@ -144,6 +150,52 @@ public class GradeFormCtrler implements Initializable {
             chcbxStdntSlct.getStyleClass().add("invalid-field");
             generateError("Select a student");
         }
+
+    }
+    @FXML
+    private void btnDltGrdClckd(){
+        Object dfltOptnStdntSlct = chcbxStdntSlct.getItems().get(0);
+        Object crntOptnStdntSlct = chcbxStdntSlct.getValue();
+        Object dfltOptnAddEdtGrd = chcbxAddEdtGrd.getItems().get(0);
+        Object crntOptnAddEdtGrd = chcbxAddEdtGrd.getValue();
+
+
+
+        if(!(crntOptnStdntSlct == dfltOptnStdntSlct) && crntOptnAddEdtGrd.equals(EDIT_GRADE) && !(chcbxStdntGrds.isDisabled()) && !(chcbxStdntGrds.getValue().equals(DFLT_GRDS)) ){
+            Object crntOptnGrdSlct = chcbxStdntGrds.getValue();
+            Student theStudent = studentController.getStudent(crntOptnStdntSlct);
+            HwGrade hwGrade = null;
+            TestGrade testGrade = null;
+
+            hwGrade = theStudent.findHWGrade(crntOptnGrdSlct.toString());
+            testGrade = theStudent.findTestGrade(crntOptnGrdSlct.toString());
+
+            if(hwGrade == null){
+                theStudent.rmGrade(testGrade);
+                chcbxStdntGrds.getItems().remove(crntOptnGrdSlct);
+            }
+            else{
+                theStudent.rmGrade(hwGrade);
+                chcbxStdntGrds.getItems().remove(crntOptnGrdSlct);
+            }
+            formCompletion("Grade removed");
+        }
+        else{
+            if(crntOptnStdntSlct == dfltOptnStdntSlct){
+                chcbxStdntSlct.getStyleClass().add("invalid-field");
+                generateError("Select a student");
+            }
+            else if(!(crntOptnAddEdtGrd.equals(EDIT_GRADE))){
+                chcbxAddEdtGrd.getStyleClass().add("invalid-field");
+                generateError("Select 'Edit Grade' for deletions");
+            }
+            else if(chcbxStdntGrds.equals(DFLT_GRDS)){
+                chcbxStdntGrds.getStyleClass().add("invalid-field");
+                generateError("Select a grade for deletion");
+            }
+
+        }
+
 
     }
     @FXML
@@ -258,10 +310,13 @@ public class GradeFormCtrler implements Initializable {
                 if (crntOptnAddEdtGrd.equals(EDIT_GRADE) && gradeSelected == true){
                     if(theHwGrade == null){//edit test grade
                         theStudent.editGrade(theTestGrade, Integer.parseInt(tfErndPts.getText()),Integer.parseInt(tfTtlPts.getText()));//points have been validated that they can be casted at this point
+                        outputMsg += (theTestGrade.getName() +" for student: "+ theStudent.getStudentName() +" changed");
                     }
                     else{//edit hw grade
                         theStudent.editGrade(theHwGrade,Integer.parseInt(tfErndPts.getText()),Integer.parseInt(tfTtlPts.getText()) );//points have been validated that they can be casted at this point
+                        outputMsg += (theHwGrade +" for student: "+ theStudent +" changed");
                     }
+
 
                 }
                 else if (crntOptnAddEdtGrd.equals(ADD_HWGRADE)){
@@ -434,7 +489,7 @@ public class GradeFormCtrler implements Initializable {
     }
 
 
-    private void formCompletion(String outputMsg){
+    private void formCompletion(String outputMsg){//set application to defaults for control of user actions
         tfErndPts.getStyleClass().remove("invalid-field");//information confirmed, infrom the user and remove potential invalid indicator styles on gui elements
         tfTtlPts.getStyleClass().remove("invalid-field");
         chcbxAddEdtGrd.getStyleClass().remove("invalid-field");
@@ -445,6 +500,7 @@ public class GradeFormCtrler implements Initializable {
         chcbxStdntSlct.setValue(DFLT_STDNT);
         tfErndPts.clear();
         tfTtlPts.clear();
+        btnDltGrd.setDisable(true);
         taOutput.appendText(outputMsg + "\n");
         System.out.println((outputMsg));
 
@@ -476,7 +532,7 @@ public class GradeFormCtrler implements Initializable {
         alert.setContentText("Please check choices/inputs at highlighted fields");
         alert.showAndWait();
     }
-    private void gradeGenerator(){//generates student grades in grade selection box
+    private void gradeGenerator(){//generates student grades in grade selection box and activates grade selection and deletion button
         Object dfltOptnStdntSlct = chcbxStdntSlct.getItems().get(0);
         Object crntOptnStdntSlct = chcbxStdntSlct.getValue();
 
@@ -490,7 +546,9 @@ public class GradeFormCtrler implements Initializable {
                 chcbxStdntGrds.getItems().add(grade);
             }
             chcbxStdntGrds.setValue(DFLT_GRDS);
+            btnDltGrd.setDisable(false);//activates deletion button
         }
+
     }
 
     //file saving/loading
@@ -514,7 +572,12 @@ public class GradeFormCtrler implements Initializable {
         FileChooser fileChooser = new FileChooser();//Allows opening and saving files
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("txt files (*.txt)", "*.txt"); //sets extension filter
         fileChooser.getExtensionFilters().add(extFilter);
-        File savedFiles = new File("savedFiles");
+        String pathname = "../courses";
+        Path requiredPath = Paths.get("../courses");
+        if(!(Files.exists(requiredPath))){
+            new File("../courses").mkdirs();
+        }
+        File savedFiles = new File(pathname);
         fileChooser.setInitialDirectory(savedFiles);
         try {
             Scene scene = btnAddStdnt.getScene();//grabs the scene from the window that initialized this event,  required for file selector
@@ -560,7 +623,13 @@ public class GradeFormCtrler implements Initializable {
         FileChooser fileChooser = new FileChooser();//Allows opening and saving files
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("txt files (*.txt)", "*.txt"); //sets extension filter
         fileChooser.getExtensionFilters().add(extFilter);
-        File savedFiles = new File("savedFiles");
+        //check if folder exists, if not, make one
+        String pathname = "../courses";
+        Path requiredPath = Paths.get("../courses");
+        if(!(Files.exists(requiredPath))){
+            new File("../courses").mkdirs();
+        }
+        File savedFiles = new File("../courses");
         fileChooser.setInitialDirectory(savedFiles);
         Scene scene = btnAddStdnt.getScene();//grabs the scene from the window that initialized this event,  required for file selector
         if (scene != null) {

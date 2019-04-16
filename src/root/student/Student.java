@@ -8,10 +8,7 @@ public class Student implements Serializable {
     List<TestGrade> _testGrades = new ArrayList<TestGrade>();
     List<HwGrade> _hwGrades = new ArrayList<HwGrade>();
     private String _studentName;
-    private int _totalhwpts;
-    private int _earnedhwpts;
-    private int _totaltestpoints;
-    private int _earnedtestpoints;
+
 
 
     public Student(String studnetName){
@@ -38,7 +35,7 @@ public class Student implements Serializable {
             }
         }
         if (tempHwGrade != null){
-            this._testGrades.remove(tempHwGrade);
+            this._hwGrades.remove(tempHwGrade);
         }
     }
     public void addGrade(TestGrade testGrade){

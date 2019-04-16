@@ -86,5 +86,6 @@
       <ChoiceBox fx:id="chcbxStdntGrds" disable="true" layoutX="24.0" layoutY="199.0" prefWidth="150.0" />
       <Button fx:id="btnClcLtrGrd" layoutX="178.0" layoutY="146.0" mnemonicParsing="false" onAction="#clcLtrGrdClckd" prefHeight="25.0" prefWidth="109.0" text="Calc Letter Grade" />
       <Button fx:id="btnClcPrctgGrd" layoutX="189.0" layoutY="109.0" mnemonicParsing="false" onAction="#clcPctGrdClckd" text="Calc % Grade" />
+      <Button fx:id="btnDltGrd" disable="true" layoutX="189.0" layoutY="187.0" mnemonicParsing="false" onAction="#btnDltGrdClckd" text="Delete Grade" />
    </children>
 </AnchorPane>
