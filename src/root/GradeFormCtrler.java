@@ -310,11 +310,11 @@ public class GradeFormCtrler implements Initializable {
                 if (crntOptnAddEdtGrd.equals(EDIT_GRADE) && gradeSelected == true){
                     if(theHwGrade == null){//edit test grade
                         theStudent.editGrade(theTestGrade, Integer.parseInt(tfErndPts.getText()),Integer.parseInt(tfTtlPts.getText()));//points have been validated that they can be casted at this point
-                        outputMsg += (theTestGrade.getName() +" for student: "+ theStudent.getStudentName() +" changed");
+                        outputMsg += (theTestGrade.getName() +" for student: "+ theStudent.getStudentName() +" changed to: " + theTestGrade.getEarnedPts() + "/" + theTestGrade.getTotalPoints());
                     }
                     else{//edit hw grade
                         theStudent.editGrade(theHwGrade,Integer.parseInt(tfErndPts.getText()),Integer.parseInt(tfTtlPts.getText()) );//points have been validated that they can be casted at this point
-                        outputMsg += (theHwGrade +" for student: "+ theStudent +" changed");
+                        outputMsg += (theHwGrade.getName() +" for student: "+ theStudent.getStudentName() +" changed to: " + theHwGrade.getEarnedPts() + "/" + theHwGrade.getTotalPoints() );
                     }
 
 
@@ -570,12 +570,12 @@ public class GradeFormCtrler implements Initializable {
     private void openConfigFile() {//Opens a file for the user to generate a fresh StdntController
 
         FileChooser fileChooser = new FileChooser();//Allows opening and saving files
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("txt files (*.txt)", "*.txt"); //sets extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("gt cfg file (*.gtcfg)", "*.gtcfg"); //sets extension filter
         fileChooser.getExtensionFilters().add(extFilter);
-        String pathname = "../courses";
-        Path requiredPath = Paths.get("../courses");
+        String pathname = "/courses";
+        Path requiredPath = Paths.get("/courses");
         if(!(Files.exists(requiredPath))){
-            new File("../courses").mkdirs();
+            new File("/courses").mkdirs();
         }
         File savedFiles = new File(pathname);
         fileChooser.setInitialDirectory(savedFiles);
@@ -621,15 +621,15 @@ public class GradeFormCtrler implements Initializable {
     @FXML
     private void saveConfigFile() {//saves current students, and their grades to file
         FileChooser fileChooser = new FileChooser();//Allows opening and saving files
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("txt files (*.txt)", "*.txt"); //sets extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("gt cfg file (*.gtcfg)", "*.gtcfg"); //sets extension filter
         fileChooser.getExtensionFilters().add(extFilter);
         //check if folder exists, if not, make one
-        String pathname = "../courses";
-        Path requiredPath = Paths.get("../courses");
+        String pathname = "/courses";
+        Path requiredPath = Paths.get("/courses");
         if(!(Files.exists(requiredPath))){
-            new File("../courses").mkdirs();
+            new File("/courses").mkdirs();
         }
-        File savedFiles = new File("../courses");
+        File savedFiles = new File("/courses");
         fileChooser.setInitialDirectory(savedFiles);
         Scene scene = btnAddStdnt.getScene();//grabs the scene from the window that initialized this event,  required for file selector
         if (scene != null) {

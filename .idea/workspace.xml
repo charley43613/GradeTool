@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="GradeTool" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/GradeTool.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/root/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradeTool/root/GradeForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradeTool/root/GradeForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradeTool/root/GradeFormCtrler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradeTool/root/GradeFormCtrler$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradeTool/root/GradeFormCtrler$e_GradeFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradeTool/root/GradeFormCtrler$e_GradeFormat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradeTool/root/GradeFormCtrler$e_GradeType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradeTool/root/GradeFormCtrler$e_GradeType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradeTool/root/GradeFormCtrler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradeTool/root/GradeFormCtrler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GradeTool/root/student/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradeTool/root/student/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedFiles/Trial.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedFiles/anotherTrial.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedFiles/eng2020.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/root/GradeForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/root/GradeForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GradeTool/root/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GradeTool/root/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/root/GradeFormCtrler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/root/GradeFormCtrler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/root/student/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/root/student/Student.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,8 +71,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/root/GradeFormCtrler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="623" column="55" selection-start-line="623" selection-start-column="55" selection-end-line="623" selection-end-column="55" />
+            <state relative-caret-position="189">
+              <caret line="307" column="59" selection-start-line="307" selection-start-column="59" selection-end-line="307" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#clcLtrGrdClckd#0;class#GradeFormCtrler#0" />
@@ -85,10 +82,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.base/javafx/collections/ModifiableObservableListBase.java">
+        <entry file="file://$PROJECT_DIR$/src/root/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="171" selection-start-line="171" selection-end-line="171" />
+            <state relative-caret-position="306">
+              <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,7 +96,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.controls/javafx/scene/control/ChoiceBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
+            <state relative-caret-position="3774">
               <caret line="276" column="47" selection-start-line="276" selection-start-column="47" selection-end-line="276" selection-end-column="47" />
             </state>
           </provider>
@@ -105,7 +105,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.base/javafx/beans/property/ObjectPropertyBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="1666">
               <caret line="132" selection-start-line="132" selection-end-line="132" />
             </state>
           </provider>
@@ -124,7 +124,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/root/student/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
+            <state relative-caret-position="510">
               <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -140,7 +140,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/root/student/Grade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
+            <state relative-caret-position="340">
               <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
               <folding>
                 <element signature="e#553#554#0" expanded="true" />
@@ -153,7 +153,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/root/GradeToolFileIO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
+            <state relative-caret-position="782">
               <caret line="50" column="30" selection-start-line="50" selection-start-column="15" selection-end-line="50" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -212,7 +212,6 @@
       <find>file</find>
       <find>edt</find>
       <find>saved</find>
-      <find>EDT</find>
       <find>dlt</find>
       <find>chcbxAddEd</find>
       <find>chcbxStdntGrds</find>
@@ -221,6 +220,7 @@
       <find>theStudent.ad</find>
       <find>save</find>
       <find>edit</find>
+      <find>EDT</find>
     </findStrings>
   </component>
   <component name="FindManager">
@@ -243,7 +243,6 @@
         <option value="$PROJECT_DIR$/src/root/Validation.java" />
         <option value="$PROJECT_DIR$/src/root/FileIO.java" />
         <option value="$PROJECT_DIR$/src/root/Sandbox.java" />
-        <option value="$PROJECT_DIR$/src/root/Main.java" />
         <option value="$PROJECT_DIR$/src/root/student/HwGrade.java" />
         <option value="$PROJECT_DIR$/src/root/student/TestGrade.java" />
         <option value="$PROJECT_DIR$/src/root/student/Grade.java" />
@@ -251,12 +250,13 @@
         <option value="$PROJECT_DIR$/src/root/GradeToolFileIO.java" />
         <option value="$PROJECT_DIR$/src/root/GradeForm.fxml" />
         <option value="$PROJECT_DIR$/src/root/student/Student.java" />
+        <option value="$PROJECT_DIR$/src/root/Main.java" />
         <option value="$PROJECT_DIR$/src/root/GradeFormCtrler.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
     <option name="width" value="1612" />
     <option name="height" value="867" />
@@ -270,12 +270,19 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="GradeTool" type="b2602c69:ProjectViewProjectNode" />
               <item name="GradeTool" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GradeTool" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GradeTool" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GradeTool" type="b2602c69:ProjectViewProjectNode" />
@@ -306,8 +313,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,9 +324,12 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555391644608" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555478160734" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/root/META-INF/MANIFEST.MF" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
@@ -456,9 +464,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1612" height="867" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.24033505" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.24677835" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -467,7 +474,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29291552" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29291552" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.38010898" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -478,7 +485,7 @@
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32970026" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32833788" />
       <window_info anchor="bottom" id="Terminal" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -723,24 +730,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/root/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/savedFiles/d.txt" />
-    <entry file="file://$PROJECT_DIR$/savedFiles/Trial.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="83" selection-start-line="2" selection-start-column="83" selection-end-line="2" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/savedFiles/Trial.txt" />
     <entry file="file://$PROJECT_DIR$/src/root/controllers/StdntController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -751,6 +742,62 @@
             <element signature="method#getStudentName#0;class#StdntController#0" />
             <element signature="method#getStudent#0;class#StdntController#0" />
             <element signature="method#findStudent#0;class#StdntController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.base/javafx/collections/ModifiableObservableListBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2465">
+          <caret line="171" selection-start-line="171" selection-end-line="171" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.controls/javafx/scene/control/ChoiceBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3774">
+          <caret line="276" column="47" selection-start-line="276" selection-start-column="47" selection-end-line="276" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.base/javafx/beans/property/ObjectPropertyBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1666">
+          <caret line="132" selection-start-line="132" selection-end-line="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/root/student/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#editGrade#0;class#Student#0" />
+            <element signature="method#editGrade#1;class#Student#0" />
+            <element signature="method#generateStndtGrades#0;class#Student#0" />
+            <element signature="method#findTestGrade#0;class#Student#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/root/student/Grade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+          <folding>
+            <element signature="e#553#554#0" expanded="true" />
+            <element signature="e#591#592#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/root/GradeToolFileIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="50" column="30" selection-start-line="50" selection-start-column="15" selection-end-line="50" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -769,56 +816,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/root/student/Grade.java">
+    <entry file="file://$PROJECT_DIR$/src/root/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-          <folding>
-            <element signature="e#553#554#0" expanded="true" />
-            <element signature="e#591#592#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.base/javafx/beans/property/ObjectPropertyBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.controls/javafx/scene/control/ChoiceBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="276" column="47" selection-start-line="276" selection-start-column="47" selection-end-line="276" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.base/javafx/collections/ModifiableObservableListBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="171" selection-start-line="171" selection-end-line="171" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/root/student/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#editGrade#0;class#Student#0" />
-            <element signature="method#editGrade#1;class#Student#0" />
-            <element signature="method#generateStndtGrades#0;class#Student#0" />
-            <element signature="method#findTestGrade#0;class#Student#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/root/GradeToolFileIO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="50" column="30" selection-start-line="50" selection-start-column="15" selection-end-line="50" selection-end-column="30" />
+        <state relative-caret-position="306">
+          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -835,8 +836,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/root/GradeFormCtrler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="623" column="55" selection-start-line="623" selection-start-column="55" selection-end-line="623" selection-end-column="55" />
+        <state relative-caret-position="189">
+          <caret line="307" column="59" selection-start-line="307" selection-start-column="59" selection-end-line="307" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#clcLtrGrdClckd#0;class#GradeFormCtrler#0" />
@@ -844,5 +845,83 @@
         </state>
       </provider>
     </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>GradeTool</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>org.controlsfx:controlsfx:9.0.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>GradeTool</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
