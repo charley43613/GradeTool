@@ -1,49 +1,43 @@
-<html>
-    <head>
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <SCRIPT src="https://java.com/js/dtjava.js"></SCRIPT><script>
+<html><head>
+  <SCRIPT src="http://java.com/js/dtjava.js"></SCRIPT>
+<script>
     function launchApplication(jnlpfile) {
         dtjava.launch(            {
                 url : 'GradeTool.jnlp'
             },
             {
-                javafx : '10.0.2+'
+                javafx : '8.0+'
             },
             {}
         );
         return false;
     }
-</script><script>
-    function javafxEmbedroot() {
+</script>
+
+<script>
+    function javafxEmbedGradeTool_id() {
         dtjava.embed(
             {
-                id : 'root',
+                id : 'GradeTool_id',
                 url : 'GradeTool.jnlp',
                 placeholder : 'javafx-app-placeholder',
                 width : '600',
                 height : '400'
             },
             {
-                javafx : '10.0.2+'
+                javafx : '8.0+'
             },
             {}
         );
     }
-    
-            <!-- Embed FX application into web page once page is loaded -->
-    dtjava.addOnloadCallback(javafxEmbedroot);
+    <!-- Embed FX application into web page once page is loaded -->
+    dtjava.addOnloadCallback(javafxEmbedGradeTool_id);
 </script>
-    </head>
-    <body>
-        <h2>
-            Test page for <b>Main</b>
-        </h2>
-        <b>Webstart:</b><a href="GradeTool.jnlp" onclick="return launchApplication('GradeTool.jnlp');">click to launch this app as webstart</a>
-        <br>
-        <hr>
-        <br>
-        
-        <!-- Applet will be inserted here -->
-        <div id="javafx-app-placeholder"></div>
-    </body>
-</html>
+
+</head><body>
+<h2>Test page for <b>GradeTool</b></h2>
+  <b>Webstart:</b> <a href='GradeTool.jnlp' onclick="return launchApplication('GradeTool.jnlp');">click to launch this app as webstart</a><br><hr><br>
+
+  <!-- Applet will be inserted here -->
+  <div id='javafx-app-placeholder'></div>
+</body></html>
